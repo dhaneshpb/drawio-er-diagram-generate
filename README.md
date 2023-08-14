@@ -1,5 +1,5 @@
 # drawio-er-diagram-generate
-Generate drawio ER diagram from existing database tables. Supports Postgres currently
+Generate drawio ER diagram from existing database tables. Supports Postgres and MySQL currently
 
 ### Command line execution:
 

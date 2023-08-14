@@ -15,7 +15,7 @@ def get_table_json_list(
                             port=port,
                             database=database)
 
-    pquery = """
+    query = """
     SELECT DISTINCT
         SDTables.table_catalog as database_name,
         SDTables.table_schema as parent_schema,
@@ -56,9 +56,8 @@ def get_table_json_list(
         parent_schema, parent_table, column_order
     """
 
-    # tables = pd.read_sql_query(pquery, conn).to_dict(orient='records')
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    cur.execute(pquery)
+    cur.execute(query)
     tables = cur.fetchall()
     conn.close()
 
