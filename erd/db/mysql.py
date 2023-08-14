@@ -14,12 +14,12 @@ def get_table_json_list(
                                    port=port,
                                    database=database)
 
-    query = """
+    query = f"""
     SELECT
       DISTINCT '' as database_name,
       SDTables.TABLE_SCHEMA as parent_schema,
       SDTables.TABLE_NAME as parent_table,
-      SDColumns.COLUMN_NAME as column name,
+      SDColumns.COLUMN_NAME as column_name,
       SDColumns.ORDINAL_POSITION as column_order,
       SDColumns.DATA_TYPE as data_type,
       SDColumns.CHARACTER_MAXIMUM_LENGTH as column_size,
@@ -40,12 +40,7 @@ def get_table_json_list(
       AND SDKeys.TABLE_NAME = SDConstraints.TABLE_NAME
     WHERE
       SDTables.TABLE_TYPE = 'BASE TABLE'
-      AND SDTables.TABLE_SCHEMA NOT IN (
-        'INFORMATION_SCHEMA',
-        'mysql',
-        'performance_schema',
-        'sys'
-      )
+      AND SDTables.TABLE_SCHEMA = '{database}'
     ORDER BY
       parent_schema,
       parent_table,
