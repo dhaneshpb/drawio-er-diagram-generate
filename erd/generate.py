@@ -3,21 +3,24 @@ import itertools
 from math import ceil
 
 from .model import ERTable
-from .db.postgres import get_table_json_list
+from .db.postgres import get_table_json_list as get_postgres_tables
+from .db.mysql import get_table_json_list as get_mysql_tables
 from .constants import *
 
 
 def execute(
         output_path: str,
-        db_type: str = "postgres",
-        host: str = "localhost",
-        port: int = 5432,
-        database: str = "postgres",
-        user: str = "postgres",
-        password: str = "postgres"):
+        db_type: str,
+        host: str,
+        port: int,
+        database: str,
+        user: str,
+        password: str):
 
     if db_type == "postgres":
-        tables = get_table_json_list(host, port, database, user, password)
+        tables = get_postgres_tables(host, port, database, user, password)
+    elif db_type == "mysql":
+        tables = get_mysql_tables(host, port, database, user, password)
     else:
         raise Exception(f"DB Type {db_type} is not supported currently")
     id_iter = itertools.count()
