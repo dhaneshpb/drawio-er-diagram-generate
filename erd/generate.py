@@ -14,11 +14,12 @@ def execute(
         host: str,
         port: int,
         database: str,
+        schema: str,
         user: str,
         password: str):
 
     if db_type == "postgres":
-        tables = get_postgres_tables(host, port, database, user, password)
+        tables = get_postgres_tables(host, port, database, schema, user, password)
     elif db_type == "mysql":
         tables = get_mysql_tables(host, port, database, user, password)
     else:

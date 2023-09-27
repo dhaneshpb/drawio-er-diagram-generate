@@ -9,6 +9,7 @@ if __name__ == "__main__":
     parser.add_argument("-a", "--host", help="sql database host", required=True)
     parser.add_argument("-p", "--port", help="sql database port", default="5432")
     parser.add_argument("-d", "--database", help="sql database name", required=True)
+    parser.add_argument("-s", "--schema", help="sql schema name", default=None)
     parser.add_argument("-u", "--username", help="sql database username", required=True)
     parser.add_argument("-k", "--password", help="sql database password", required=True)
     parser.add_argument("-o", "--output-path", help="Diagram output file path", default="er_gen.drawio")
@@ -20,6 +21,7 @@ if __name__ == "__main__":
         config['host'],
         config['port'],
         config['database'],
+        config['schema'],
         config['username'],
         config['password']
     )
