@@ -5,7 +5,7 @@ Generate drawio ER diagram from existing database tables. Supports Postgres and 
 
 > **usage:**
 >
-> python generate_erd.py [-h] [-t DB_TYPE] -a HOST [-p PORT] -d DATABASE -u USERNAME -k PASSWORD [-o OUTPUT_PATH]
+> python generate_erd.py [-h] [-t DB_TYPE] -a HOST [-p PORT] -d DATABASE [-s SCHEMA] -u USERNAME -k PASSWORD [-o OUTPUT_PATH]
 
 ### options:
 
@@ -15,6 +15,7 @@ Generate drawio ER diagram from existing database tables. Supports Postgres and 
 | -a HOST, --host HOST                      | sql database host                                    |
 | -p PORT, --port PORT                      | sql database port                                    |
 | -d DATABASE, --database DATABASE          | sql database name                                    |
+| -s SCHEMA, --schema SCHEMA                | sql schema name (optional)                           |
 | -u USERNAME, --username USERNAME          | sql database username                                |
 | -k PASSWORD, --password PASSWORD          | sql database password                                |
 | -o OUTPUT_PATH, --output-path OUTPUT_PATH | Diagram output file path (default: er_gen.drawio)    |
