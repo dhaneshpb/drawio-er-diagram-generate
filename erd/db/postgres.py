@@ -6,6 +6,7 @@ def get_table_json_list(
         host: str = "localhost",
         port: int = 5432,
         database: str = "postgres",
+        schema: str = None,
         user: str = "postgres",
         password: str = "") -> list:
 
@@ -14,8 +15,11 @@ def get_table_json_list(
                             host=host,
                             port=port,
                             database=database)
+    schema_condition = ""
+    if schema:
+        schema_condition = f"AND SDTables.table_schema = '{schema}'"
 
-    query = """
+    query = f"""
     SELECT DISTINCT
         SDTables.table_catalog as database_name,
         SDTables.table_schema as parent_schema,
@@ -52,6 +56,7 @@ def get_table_json_list(
     WHERE 
         SDTables.TABLE_TYPE='BASE TABLE' 
         AND SDTables.table_schema NOT IN('information_schema','pg_catalog')
+        {schema_condition}
     ORDER BY 
         parent_schema, parent_table, column_order
     """
